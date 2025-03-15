@@ -1,0 +1,87 @@
+include: package:lints/recommended.yaml
+
+linter:
+  rules:
+     # Identifier
+    - camel_case_types              # DO name types using UpperCamelCase
+    - camel_case_extensions         # DO name extensions using UpperCamelCase
+    - file_names                    # DO name packages, directories, and source files using lowercase_with_underscores
+    - package_names
+    - library_prefixes              # DO name import prefixes using lowercase_with_underscores
+    - non_constant_identifier_names # DO name other identifiers using lowerCamelCase
+    - constant_identifier_names     # PREFER using lowerCamelCase for constant names
+    - no_wildcard_variable_uses     # DON'T use wildcard parameters or variables.
+    - unnecessary_underscores       # AVOID using multiple underscores when a single wildcard will do.
+    - directives_ordering           # DO place dart: > package: > alphabetically > specify exports
+    # DO format your code using `dart format`
+    - lines_longer_than_80_chars    # AVOID lines longer than 80 characters
+    - curly_braces_in_flow_control_structures # DO use curly braces for all flow control statements
+    # Doc comments are especially handy because `dart doc` parses them and generates doc pages
+    - slash_for_doc_comments
+    - comment_references            # DO reference only in-scope identifiers in doc comments.
+    # Usage
+    - use_string_in_part_of_directives # DO use strings in `part of` directives
+    - implementation_imports        # DON'T import libraries that are inside the `src` directory of another package
+    - avoid_relative_lib_imports    # DON'T allow an import path to reach into or out of `lib`
+    - prefer_relative_imports       # PREFER relative import paths
+    - avoid_init_to_null            # DON'T explicitly initialize variables to `null`, or use as default value
+    - prefer_adjacent_string_concatenation # DO use adjacent strings to concatenate string literals
+    - prefer_interpolation_to_compose_strings # PREFER using interpolation to compose strings and values
+    - unnecessary_brace_in_string_interps # AVOID using curly braces in interpolation when not needed
+    - prefer_collection_literals    # DO use collection literals when possible
+    - prefer_is_empty               # DON'T use `.length` to see if a collection is empty
+    - prefer_is_not_empty
+    - avoid_function_literals_in_foreach_calls # AVOID using `Iterable.forEach()` with a function literal
+    - prefer_iterable_whereType     # DO use `whereType()` to filter a collection by type
+    - prefer_function_declarations_over_variables # DO use a function declaration to bind a function to a name
+    - unnecessary_lambdas           # DON'T create a lambda when a tear-off will do
+    - unnecessary_getters_setters   # DON'T wrap a field in a getter and setter unnecessarily
+    - prefer_expression_function_bodies # CONSIDER using `=>` for simple members
+    - unnecessary_this              # DON'T use `this.` except to redirect to a named constructor or to avoid shadowing
+    - prefer_initializing_formals   # DO use initializing formals when possible
+    - empty_constructor_bodies      # DO use `;` instead of `{}` for empty constructor bodies
+    - unnecessary_new               # DON'T use `new`
+    - unnecessary_const             # DON'T use `const` redundantly
+    - avoid_catches_without_on_clauses # AVOID catches without `on` clauses
+    - avoid_catching_errors         # DON'T explicitly catch `Error` or types that implement it
+    - use_rethrow_when_possible     # DO use `rethrow` to rethrow a caught exception
+    - use_to_and_as_if_applicable   # PREFER naming a method `to___()` if it copies the object's state to a new object
+                                    #   `as___()` if it returns a different representation backed by the original object
+    - one_member_abstracts          # AVOID defining a one-member abstract class when a simple function will do
+    - avoid_classes_with_only_static_members # AVOID defining a class that contains only static members
+    - prefer_mixin                  # PREFER defining a pure `mixin` or pure `class` to a `mixin class`
+    - prefer_final_fields           # PREFER making fields and top-level variables `final`
+    - use_setters_to_change_properties # DO use setters for operations that conceptually change properties
+    - avoid_setters_without_getters # DON'T define a setter without a corresponding getter
+    - avoid_returning_this          # AVOID returning `this` from methods just to enable a fluent interface
+    - prefer_typing_uninitialized_variables # DO type annotate variables without initializers
+    - type_annotate_public_apis     # DO type annotate fields and top-level variables if the type isn't obvious
+    - omit_local_variable_types     # DON'T redundantly type annotate initialized local variables
+    - avoid_types_on_closure_parameters # DON'T annotate inferred parameter types on function expressions
+    - type_init_formals             # DON'T type annotate initializing formals
+    - avoid_return_types_on_setters # DON'T specify a return type for a setter
+    - prefer_generic_function_type_aliases # DON'T use the legacy typedef syntax
+    - avoid_private_typedef_functions # PREFER inline function types over typedefs
+    - use_function_type_syntax_for_parameters # PREFER using function type syntax for parameters
+    - avoid_positional_boolean_parameters # AVOID positional boolean parameters
+    - hash_and_equals               # DO override `hashCode` if you override `==`
+    - avoid_equals_and_hash_code_on_mutable_classes # AVOID defining custom equality for mutable classes
+    - avoid_null_checks_in_equality_operators # DON'T make the parameter to `==` nullable
+    - require_trailing_commas      # 提升git diff清晰度
+    - prefer_double_quotes         # 统一字符串引号风格 
+    - null_check_on_nullable_type_parameter # 更严格的空安全
+    - unnecessary_null_checks      # 消除冗余空检查
+    - public_member_api_docs
+
+analyzer:
+  strong-mode:
+    implicit-casts: false    # 禁止隐式类型转换（如 dynamic → int）
+    implicit-dynamic: false  # 禁止隐式 dynamic 类型
+  language:
+    strict-raw-types: true   # 强制泛型类型明确
+  errors:
+    missing_return: error    # 函数缺少返回值报错
+    unused_element: warning  # 未使用的元素警告
+  exclude:
+    - "build/**"          # 忽略构建目录
+    - "lib/generated/**"  # 忽略代码生成文件
