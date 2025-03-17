@@ -253,3 +253,20 @@ Explanation
     - The user interacts with high-level methods without worrying about the underlying initialization and release of resources.
 
 This design ensures that the user has a simple and clean interface to work with, while the class handles all the complex details internally.
+
+# Device Flags
+```dart
+final coreMLFlags = CoreMLFlags.useNone | CoreMLFlags.useCpuOnly | CoreMLFlags.enableOnSubgraph | CoreMLFlags.onlyEnableDeviceWithANE;
+  sessionOptions.appendCoreMLProvider(coreMLFlags);
+
+final sessionOptions = OrtSessionOptions();
+
+// Append multiple providers
+sessionOptions.appendCoreMLProvider(CoreMLFlags.useNone);
+sessionOptions.appendCPUProvider(CPUFlags.useArena);
+sessionOptions.appendNnapiProvider(NnapiFlags.useNone);
+sessionOptions.appendXnnpackProvider();
+
+final modelFile = File('path/to/your/model.onnx');
+final session = await OrtSession.fromFile(modelFile, sessionOptions);
+```
